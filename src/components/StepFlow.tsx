@@ -373,7 +373,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 A quick question
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Is your heart already taken?
+                Is your heart taken?
               </h2>
               <p className="text-xs text-slate-400 mt-2">
                 Please be completely honest — I will respect whatever your answer is 🌸
