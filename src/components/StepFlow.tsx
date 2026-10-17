@@ -344,19 +344,16 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 text-center">
                 So, what&apos;s really happening here? 👀
               </h2>
-              <div className="space-y-3 text-slate-200/90 text-xs sm:text-sm leading-relaxed bg-white/[0.03] p-4 rounded-2xl border border-white/5 font-light">
+              <div className="space-y-3.5 text-slate-200/90 text-xs sm:text-sm leading-relaxed bg-white/[0.03] p-4 sm:p-5 rounded-2xl border border-white/5 font-light">
                 <p>
-                  I noticed you unfollowed me on Instagram, and my follow request is still waiting there rather patiently... 😂 Instead of sending ordinary messages, I thought I&apos;d use my software skills to say hello properly.
+                  This might feel a bit unexpected, but I wanted to do something more memorable than just an everyday text. I noticed you unfollowed me on Instagram, and my follow request was left waiting rather patiently... 😂 So being a developer, I thought I&apos;d use my skills to say hello in my own way.
                 </p>
                 <p>
-                  And since you&apos;re studying <strong className="text-pink-300 font-medium">English Philology</strong>, I thought writing this entire page in English was only right! 🎓✨
+                  And knowing that you&apos;re studying <strong className="text-pink-300 font-medium">English Philology</strong>, I thought writing this in English was only right! 🎓✨
                 </p>
                 <p>
-                  My name is <strong className="text-pink-400 font-semibold">Nodirbek</strong>, from Urgench. Please don&apos;t worry — there is absolutely no pressure or creepy stalking here! My intentions are sincere and serious.
+                  My name is <strong className="text-pink-400 font-semibold">Nodirbek</strong>, from Urgench. I wanted to reach out because my intentions toward you are genuinely sincere and serious. How I found you, where I first noticed you, and why you... well, that&apos;s still a little secret for now 🤫
                 </p>
-                <div className="p-2.5 rounded-xl bg-pink-500/10 border border-pink-500/20 text-xs text-pink-200 mt-2">
-                  🛡️ <strong>Peace of mind:</strong> If your answer is no, I completely understand and respect it, and I promise I will never bother you again. Zero obligations!
-                </div>
               </div>
             </div>
 
@@ -364,7 +361,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               onClick={handleIntrigueContinue}
               className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-sm sm:text-base font-semibold group cursor-pointer"
             >
-              <span>I appreciate the honesty... Let&apos;s continue! ✨</span>
+              <span>Okay, I&apos;m listening... Let&apos;s continue! ✨</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
           </motion.div>
