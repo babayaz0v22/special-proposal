@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { token, type, addressOrCafe, contact, dodgeCount } = body;
+    const { token, type, addressOrCafe, contact, dodgeCount, igAccept } = body;
 
     const userAgent = req.headers.get("user-agent") || undefined;
     const ip =
@@ -18,10 +18,11 @@ export async function POST(req: NextRequest) {
     let telegramText = "";
 
     if (type === "success_5A") {
-      telegramText = `🎉 <b>SOVG'A & KONTAKT MA'LUMOTLARI YUBORILDI!</b> 💌\n\n` +
-        `📍 <b>Manzil / Sevimli qahvaxona:</b>\n<i>${addressOrCafe || "Kiritilmadi"}</i>\n\n` +
-        `📞 <b>Aloqa (Telegram/Tel):</b>\n<code>${contact || "Kiritilmadi"}</code>\n\n` +
-        `✨ <i>Bu ajoyib xushxabar! Tez orada bog'lanishingiz mumkin.</i>`;
+      telegramText = `🎉 <b>MAXSUS JAVOB YUBORILDI!</b> 💌\n\n` +
+        `📸 <b>Instagram Request:</b> <i>${igAccept || "Tanlanmadi"}</i>\n\n` +
+        `📍 <b>Uy manzili / Javob:</b>\n<i>${addressOrCafe || "Kiritilmadi"}</i>\n\n` +
+        `📞 <b>Aloqa (Telegram/Tel/IG):</b>\n<code>${contact || "Kiritilmadi"}</code>\n\n` +
+        `✨ <i>Bu ajoyib xushxabar! Onangiz bilan birga tashrif buyurishingiz mumkin.</i>`;
 
       if (dodgeCount && dodgeCount > 0) {
         telegramText += `\n\n<i>Eslatma: Boshida "No" tugmasini ${dodgeCount} marta qochirgan edi 😉</i>`;

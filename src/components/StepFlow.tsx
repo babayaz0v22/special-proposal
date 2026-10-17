@@ -27,7 +27,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
   // Form states for 5A
   const [addressOrCafe, setAddressOrCafe] = useState("");
-  const [mapConfirm, setMapConfirm] = useState<"yes" | "no" | null>(null);
+  const [igAccept, setIgAccept] = useState<"yes" | "later" | null>(null);
   const [contact, setContact] = useState("");
 
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -184,12 +184,13 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
       localStorage.setItem(`consumed_${token}`, "true");
     }
 
-    const finalAddress =
-      mapConfirm === "yes"
-        ? "S. Nichepurenko Street, 11 (Confirmed from map ✅)"
-        : addressOrCafe.trim()
-        ? `${addressOrCafe.trim()} (Custom entered ✍️)`
-        : "Not provided (Skipped)";
+    const finalAddress = addressOrCafe.trim() || "Not provided (Skipped)";
+    const igStatus =
+      igAccept === "yes"
+        ? "Accepted follow request ✨"
+        : igAccept === "later"
+        ? "Maybe later 😊"
+        : "Not specified";
 
     try {
       await fetch("/api/submit", {
@@ -201,6 +202,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
           addressOrCafe: finalAddress,
           contact,
           dodgeCount,
+          igAccept: igStatus,
         }),
       });
     } catch (err) {
@@ -340,18 +342,21 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-3 mb-6 text-left">
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 text-center">
-                So, what&apos;s going on here? 👀
+                So, what&apos;s really happening here? 👀
               </h2>
-              <div className="space-y-3 text-slate-200/90 text-sm sm:text-base leading-relaxed bg-white/[0.03] p-4 rounded-2xl border border-white/5 font-light">
+              <div className="space-y-3 text-slate-200/90 text-xs sm:text-sm leading-relaxed bg-white/[0.03] p-4 rounded-2xl border border-white/5 font-light">
                 <p>
-                  This might be unexpected, but I wanted to choose a way a little more special and memorable than an ordinary hello. Working in software engineering, I thought I&apos;d use my skills to create something unique just for you.
+                  I noticed you unfollowed me on Instagram, and my follow request is still waiting there rather patiently... 😂 Instead of sending ordinary messages, I thought I&apos;d use my software skills to say hello properly.
                 </p>
                 <p>
-                  My name is <strong className="text-pink-400 font-semibold">Nodirbek</strong>, and I&apos;m from Urgench. I want to sincerely let you know that my intentions toward you are genuine and serious. Where I first saw you, how I found you, and why it&apos;s you... is still a little secret for now. 🤫
+                  And since you&apos;re studying <strong className="text-pink-300 font-medium">English Philology</strong>, I thought writing this entire page in English was only right! 🎓✨
                 </p>
                 <p>
-                  If you would be open to a short, cozy chat over a cup of coffee — with your parents&apos; permission, of course — I&apos;ll gladly share the whole story then. Until then, I just have a couple of quick questions for you 😊
+                  My name is <strong className="text-pink-400 font-semibold">Nodirbek</strong>, from Urgench. Please don&apos;t worry — there is absolutely no pressure or creepy stalking here! My intentions are sincere and serious.
                 </p>
+                <div className="p-2.5 rounded-xl bg-pink-500/10 border border-pink-500/20 text-xs text-pink-200 mt-2">
+                  🛡️ <strong>Peace of mind:</strong> If your answer is no, I completely understand and respect it, and I promise I will never bother you again. Zero obligations!
+                </div>
               </div>
             </div>
 
@@ -359,7 +364,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               onClick={handleIntrigueContinue}
               className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-sm sm:text-base font-semibold group cursor-pointer"
             >
-              <span>I&apos;m curious to know... Let&apos;s continue! ✨</span>
+              <span>I appreciate the honesty... Let&apos;s continue! ✨</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
           </motion.div>
@@ -450,96 +455,63 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
             </div>
 
             <form onSubmit={handleSubmit5A} className="space-y-4 text-left">
-              {/* Map Preview & Address Confirmation Card */}
-              <div className="rounded-2xl bg-black/40 border border-white/10 p-3 overflow-hidden">
-                <div className="flex items-center gap-2 mb-2 text-xs font-medium text-pink-300">
-                  <MapPin className="w-4 h-4 text-pink-400 shrink-0" />
-                  <span>Could you confirm if this is your address?</span>
+              {/* Card 1: Instagram Follow Request (Playful Icebreaker) */}
+              <div className="p-3.5 rounded-2xl bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-purple-500/10 border border-pink-500/25">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="font-semibold text-pink-300 text-xs flex items-center gap-1.5">
+                    📸 Instagram Follow Request
+                  </span>
+                  <span className="text-[10px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-medium">Optional</span>
                 </div>
-
-                {/* Map image preview */}
-                <div className="relative w-full h-44 rounded-xl overflow-hidden border border-white/10 mb-2.5 bg-black/50">
-                  <Image
-                    src="/images/map-guess.png"
-                    alt="Map guess location"
-                    fill
-                    className="object-cover object-center"
-                  />
-                  <div className="absolute bottom-2 left-2 right-2 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15 flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping shrink-0" />
-                    <span className="text-xs font-semibold text-white tracking-wide truncate">
-                      улица С. Ничепуренка, 11
-                    </span>
-                  </div>
-                </div>
-
-                {/* Yes / No Choice Buttons */}
-                <div className="grid grid-cols-2 gap-2 mt-2">
+                <p className="text-slate-200 text-xs leading-relaxed mb-3">
+                  If you don&apos;t mind, would you consider accepting that poor little follow request on Instagram? 🙈
+                </p>
+                <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
-                    onClick={() => {
-                      setMapConfirm("yes");
-                      setAddressOrCafe("улица С. Ничепуренка, 11");
-                    }}
+                    onClick={() => setIgAccept("yes")}
                     className={`py-2 px-3 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                      mapConfirm === "yes"
+                      igAccept === "yes"
                         ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md shadow-pink-500/30 border border-pink-400"
                         : "bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10"
                     }`}
                   >
                     <Check className="w-3.5 h-3.5" />
-                    <span>Yes, that&apos;s it ✨</span>
+                    <span>I&apos;ll accept it ✨</span>
                   </button>
 
                   <button
                     type="button"
-                    onClick={() => {
-                      setMapConfirm("no");
-                      setAddressOrCafe("");
-                    }}
+                    onClick={() => setIgAccept("later")}
                     className={`py-2 px-3 rounded-xl text-xs font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                      mapConfirm === "no"
+                      igAccept === "later"
                         ? "bg-pink-500/20 text-pink-300 border border-pink-500/40"
                         : "bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10"
                     }`}
                   >
-                    <span>No, other address</span>
+                    <span>Maybe later 😊</span>
                   </button>
                 </div>
+              </div>
 
-                {/* If "Yes", show confirmed status */}
-                {mapConfirm === "yes" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-2.5 p-2 rounded-xl bg-pink-500/10 border border-pink-500/20 text-center text-xs text-pink-300 font-medium"
-                  >
-                    ✅ Address confirmed: улица С. Ничепуренка, 11
-                  </motion.div>
-                )}
-
-                {/* If "No", open input field for custom address */}
-                <AnimatePresence>
-                  {mapConfirm === "no" && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="mt-3 pt-3 border-t border-white/10 overflow-hidden"
-                    >
-                      <label className="block text-xs font-medium text-pink-300 mb-1.5">
-                        Please enter your correct address 🏡
-                      </label>
-                      <textarea
-                        rows={2}
-                        value={addressOrCafe}
-                        onChange={(e) => setAddressOrCafe(e.target.value)}
-                        placeholder="Street name, landmark, house number..."
-                        className="w-full px-3.5 py-2.5 rounded-xl luxury-input text-xs resize-none"
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+              {/* Card 2: Serious Intention & Mother's Visit */}
+              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <div className="flex items-center gap-1.5 mb-1.5 text-pink-300 font-semibold text-xs">
+                  <span>🏡 Sincere intentions & Family visit</span>
+                </div>
+                <p className="text-slate-200 text-xs leading-relaxed mb-3">
+                  My intentions toward you are completely sincere and serious. With your and your family&apos;s blessing, I would truly love for my mother to visit your home to meet your family and pay her respects 🌸
+                </p>
+                <label className="block font-medium text-slate-300 mb-1 text-[11px]">
+                  If you are comfortable, you can share your home address (optional):
+                </label>
+                <textarea
+                  rows={2}
+                  value={addressOrCafe}
+                  onChange={(e) => setAddressOrCafe(e.target.value)}
+                  placeholder="Street name, landmark, house number..."
+                  className="w-full px-3 py-2 rounded-xl luxury-input text-xs resize-none"
+                />
               </div>
 
               {/* Contact info (unchanged) */}
