@@ -354,6 +354,9 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 <p>
                   My name is <strong className="text-pink-400 font-semibold">Nodirbek</strong>, from Urgench. I wanted to reach out because my intentions toward you are genuinely sincere and serious. How I found you, where I first noticed you, and why you... well, that&apos;s still a little secret for now 🤫
                 </p>
+                <div className="p-2.5 sm:p-3 rounded-xl bg-pink-500/10 border border-pink-500/20 text-xs text-pink-200 mt-2">
+                  🛡️ <strong>Peace of mind:</strong> If your answer is no, I completely understand and respect it, and I promise I will never bother you again. Zero obligations!
+                </div>
               </div>
             </div>
 
