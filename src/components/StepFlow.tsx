@@ -18,6 +18,8 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
   const [isAudioTriggered, setIsAudioTriggered] = useState(false);
   const [dodgeCount, setDodgeCount] = useState(0);
   const [noButtonPos, setNoButtonPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [busyAttempts, setBusyAttempts] = useState(0);
+  const [busyButtonPos, setBusyButtonPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isVerifying, setIsVerifying] = useState(true);
   const [closedMessage, setClosedMessage] = useState<string | null>(null);
@@ -148,6 +150,26 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
       } catch (err) {
         console.error("[Submit 5B] error:", err);
       }
+    }
+  };
+
+  // Step 4: "Yes, I'm taken" 3-attempt dodging logic
+  const handleBusyClick = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    if (busyAttempts === 0) {
+      setBusyAttempts(1);
+      const randomX = (Math.random() - 0.5) * 160;
+      const randomY = (Math.random() - 0.5) * 50;
+      setBusyButtonPos({ x: randomX, y: randomY });
+      sendTelemetry("status_busy_attempt", { attempt: 1 });
+    } else if (busyAttempts === 1) {
+      setBusyAttempts(2);
+      const randomX = (Math.random() - 0.5) * 180;
+      const randomY = (Math.random() - 0.5) * 60;
+      setBusyButtonPos({ x: randomX, y: randomY });
+      sendTelemetry("status_busy_attempt", { attempt: 2 });
+    } else {
+      handleStatusChoice("busy");
     }
   };
 
@@ -346,33 +368,53 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
           >
             <CatVisual type="status" />
 
-            <div className="mt-3 mb-8">
+            <div className="mt-3 mb-6">
               <span className="inline-block text-xs uppercase tracking-widest text-pink-400 font-medium mb-1">
                 A quick question
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Is your heart taken?
+                Is your heart already taken?
               </h2>
               <p className="text-xs text-slate-400 mt-2">
                 Please be completely honest — I will respect whatever your answer is 🌸
               </p>
+
+              {busyAttempts > 0 && (
+                <motion.p
+                  key={busyAttempts}
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-xs text-pink-300/85 italic mt-3 bg-pink-500/10 py-1.5 px-3.5 rounded-full inline-block border border-pink-500/20"
+                >
+                  {busyAttempts === 1
+                    ? "Are you really sure? 🥺"
+                    : "Please think about it once more... 🙈"}
+                </motion.p>
+              )}
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               <button
                 onClick={() => handleStatusChoice("free")}
-                className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-base font-semibold cursor-pointer group"
+                className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-base font-semibold cursor-pointer group shadow-lg shadow-pink-500/25"
               >
                 <Heart className="w-5 h-5 fill-white transition-transform group-hover:scale-110" />
-                <span>No, it&apos;s free ✨</span>
+                <span>No, my heart is free ✨</span>
               </button>
 
-              <button
-                onClick={() => handleStatusChoice("busy")}
-                className="w-full py-3.5 px-6 btn-glass text-sm sm:text-base text-slate-300 hover:text-white rounded-full cursor-pointer transition-colors"
-              >
-                Yes, I&apos;m taken
-              </button>
+              <div className="relative min-h-[52px] flex items-center justify-center">
+                <motion.button
+                  animate={{ x: busyButtonPos.x, y: busyButtonPos.y }}
+                  transition={{ type: "spring", stiffness: 450, damping: 22 }}
+                  onClick={handleBusyClick}
+                  onTouchStart={handleBusyClick}
+                  className="py-3 px-6 btn-glass text-xs sm:text-sm text-slate-300 hover:text-white rounded-full cursor-pointer transition-colors select-none"
+                >
+                  {busyAttempts === 0 && "Yes, I'm taken"}
+                  {busyAttempts === 1 && "Are you sure? 🥺"}
+                  {busyAttempts === 2 && "Think about it once more... 🙈"}
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         )}
