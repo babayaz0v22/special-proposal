@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className="min-h-screen bg-background text-foreground antialiased selection:bg-pink-500/30 selection:text-pink-200">
+      <body className="min-h-screen bg-background text-foreground antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
         <div className="ambient-glow" />
         <main className="relative z-10 flex min-h-screen flex-col items-center justify-center">
           {children}

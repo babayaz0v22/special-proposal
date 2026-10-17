@@ -22,16 +22,16 @@ body {
   min-height: 100vh;
 }
 
-/* Ambient luxury background glow */
+/* Ambient luxury background glow with subtle emerald & warm gold */
 .ambient-glow {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
   background: 
-    radial-gradient(circle at 50% 10%, rgba(255, 42, 133, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.1) 0%, transparent 45%),
-    radial-gradient(circle at 15% 75%, rgba(244, 63, 94, 0.08) 0%, transparent 40%);
+    radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.13) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 15% 75%, rgba(255, 42, 133, 0.08) 0%, transparent 40%);
 }
 
 /* Frosted glass luxury card */

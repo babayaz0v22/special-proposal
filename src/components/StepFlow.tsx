@@ -246,17 +246,24 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
             exit="exit"
             className="w-full glass-card rounded-3xl p-6 sm:p-8 text-center"
           >
+            {/* Elegant Bismillah Header */}
+            <div className="mb-2">
+              <span className="text-sm sm:text-base font-serif text-amber-200/90 tracking-wider select-none drop-shadow-[0_2px_8px_rgba(245,158,11,0.2)]">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+              </span>
+            </div>
+
             <CatVisual type="intro" />
 
-            <div className="mt-4 mb-8">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-pink-500/10 text-pink-400 border border-pink-500/20 mb-3">
-                <Sparkles className="w-3.5 h-3.5" /> Just for you
+            <div className="mt-3 mb-8">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/25 mb-3">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Sincere Intentions • Just for you
               </span>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2 leading-snug">
                 I have something special to tell you...
               </h1>
               <p className="text-sm text-slate-300/80 font-light">
-                Are you ready for a little mystery? ✨
+                A little message written with pure respect ✨
               </p>
             </div>
 
@@ -283,8 +290,8 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
             <CatVisual type="trust" />
 
             <div className="mt-3 mb-6">
-              <p className="text-xs uppercase tracking-widest text-pink-400 font-medium mb-1">
-                Be honest with me...
+              <p className="text-xs uppercase tracking-widest text-emerald-400 font-medium mb-1">
+                A sincere question...
               </p>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                 Do you trust me? 🥺
@@ -309,10 +316,10 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               {/* YES BUTTON */}
               <button
                 onClick={handleTrustYes}
-                className="py-3.5 px-7 btn-neon text-sm sm:text-base font-semibold shadow-lg shadow-pink-500/30 flex items-center gap-1.5 cursor-pointer"
+                className="py-3.5 px-7 btn-neon text-sm sm:text-base font-semibold shadow-lg shadow-pink-500/30 flex items-center gap-2 cursor-pointer"
               >
-                <Heart className="w-4 h-4 fill-white" />
                 <span>Yes, I do</span>
+                <span className="text-base">🤍</span>
               </button>
 
               {/* RUNAWAY "NO" BUTTON */}
@@ -354,9 +361,9 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                   And since you&apos;re studying <strong className="text-pink-300 font-medium">English Philology</strong>, it only made sense to write this in English! 🎓✨
                 </p>
                 <p>
-                  I really wanted a chance to properly introduce myself and say hello. As for where I first saw you, how I found you, and why it&apos;s you... well, let&apos;s keep that as a sweet little secret for now 🤫
+                  I really wanted a chance to properly introduce myself and say hello with genuine and pure intentions. As for where I first saw you, how I found you, and why it&apos;s you... well, let&apos;s keep that as a sweet little secret for now 🤫
                 </p>
-                <div className="p-2.5 sm:p-3 rounded-xl bg-pink-500/10 border border-pink-500/20 text-xs text-pink-200 mt-2">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-xs text-emerald-200 mt-2">
                   🛡️ <strong>Peace of mind:</strong> If your answer is no, I completely understand and respect it, and I promise I will never bother you again. Zero obligations!
                 </div>
               </div>
@@ -385,8 +392,8 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
             <CatVisual type="status" />
 
             <div className="mt-3 mb-6">
-              <span className="inline-block text-xs uppercase tracking-widest text-pink-400 font-medium mb-1">
-                A quick question
+              <span className="inline-block text-xs uppercase tracking-widest text-emerald-400 font-medium mb-1">
+                With full respect
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                 Is your heart taken?
@@ -414,8 +421,8 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 onClick={() => handleStatusChoice("free")}
                 className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-base font-semibold cursor-pointer group shadow-lg shadow-pink-500/25"
               >
-                <Heart className="w-5 h-5 fill-white transition-transform group-hover:scale-110" />
                 <span>No, my heart is free ✨</span>
+                <span className="text-base">🤍</span>
               </button>
 
               <div className="relative min-h-[52px] flex items-center justify-center">
@@ -449,13 +456,13 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-3 mb-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-                Wonderful news! 🥰
+                Alhamdulillah! 🤍
               </h2>
-              <div className="bg-gradient-to-b from-white/[0.05] via-pink-500/[0.03] to-transparent p-4 sm:p-5 rounded-2xl border border-pink-500/20 text-left shadow-inner">
+              <div className="bg-gradient-to-b from-white/[0.05] via-emerald-500/[0.04] to-transparent p-4 sm:p-5 rounded-2xl border border-emerald-500/25 text-left shadow-inner">
                 <p className="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
-                  I want to let you know that my intentions toward you are sincere and serious. If you don&apos;t mind, my mother would love to visit your home with good intentions.
+                  I want to let you know that my intentions toward you are sincere, serious, and halal. If you don&apos;t mind, my mother would love to visit your home with good intentions to meet your family and follow our beautiful traditions.
                 </p>
-                <div className="mt-3 pt-3 border-t border-white/10 text-xs sm:text-[13px] text-pink-300/90 flex items-center gap-2 font-light">
+                <div className="mt-3 pt-3 border-t border-white/10 text-xs sm:text-[13px] text-emerald-300/90 flex items-center gap-2 font-light">
                   <span>🌸</span>
                   <span>Doing things respectfully and with proper tradition is always the best way.</span>
                 </div>
@@ -550,12 +557,12 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 I understand... 🤍
               </h2>
               <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed font-light bg-white/[0.03] p-4 rounded-2xl border border-white/5">
-                Thank you so much for your honesty! Wishing you genuine happiness from the bottom of my heart ✨
+                Thank you so much for your honesty! Wishing you genuine happiness, barakah, and ease in everything you do ✨
               </p>
             </div>
 
             <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-400">
-              <ShieldCheck className="w-4 h-4 text-pink-400/80" />
+              <ShieldCheck className="w-4 h-4 text-emerald-400/80" />
               <span>Your response has been received with sincere respect</span>
             </div>
           </motion.div>
@@ -573,12 +580,12 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
           >
             <ConfettiBlast />
 
-            {/* Glowing heartbeat icon */}
+            {/* Glowing heart icon */}
             <div className="mx-auto my-2 flex items-center justify-center">
               <div className="relative">
-                <div className="absolute inset-0 bg-pink-500/40 rounded-full blur-2xl animate-pulse" />
-                <div className="relative w-16 h-16 rounded-full bg-gradient-to-tr from-pink-500 to-rose-600 flex items-center justify-center shadow-lg shadow-pink-500/50 animate-heart-pulse">
-                  <Heart className="w-9 h-9 fill-white text-white" />
+                <div className="absolute inset-0 bg-emerald-500/30 rounded-full blur-2xl animate-pulse" />
+                <div className="relative w-16 h-16 rounded-full bg-gradient-to-tr from-emerald-500 via-teal-600 to-amber-500 flex items-center justify-center shadow-lg shadow-emerald-500/40">
+                  <span className="text-3xl">🤍</span>
                 </div>
               </div>
             </div>
@@ -586,17 +593,17 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
             <CatVisual type="celebrate" />
 
             <div className="mt-4 space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-rose-300 to-pink-400">
-                You made my day! 🎉
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">
+                Alhamdulillah! 🎉
               </h2>
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal bg-pink-500/10 border border-pink-500/20 p-4 rounded-2xl">
-                Thank you so much! I&apos;ll be in touch soon ✨
+              <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-2xl">
+                Thank you so much! Insha&apos;Allah, I&apos;ll be in touch soon ✨
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2 text-xs sm:text-sm text-pink-300/90 font-light">
-              <Sparkles className="w-4 h-4 text-pink-400" />
-              <span>With sincere respect, Nodirbek 🌸</span>
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2 text-xs sm:text-sm text-emerald-300/90 font-light">
+              <Sparkles className="w-4 h-4 text-amber-300" />
+              <span>With sincere respect &amp; du&apos;as, Nodirbek 🌸</span>
             </div>
           </motion.div>
         )}
