@@ -313,13 +313,13 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               </h2>
               <div className="space-y-3 text-slate-200/90 text-sm sm:text-base leading-relaxed bg-white/[0.03] p-4 rounded-2xl border border-white/5 font-light">
                 <p>
-                  This might be unexpected, but I wanted to choose a way a little more memorable than an ordinary hello.
+                  This might be unexpected, but I wanted to choose a way a little more special and memorable than an ordinary hello. Working in software engineering, I thought I&apos;d use my skills to create something unique just for you.
                 </p>
                 <p>
-                  My name is <strong className="text-pink-400 font-semibold">Nodirbek</strong>. Where I first saw you, how I found you, and why it&apos;s you... is still a little secret for now. 🤫
+                  My name is <strong className="text-pink-400 font-semibold">Nodirbek</strong>, and I&apos;m from Urgench. I want to sincerely let you know that my intentions toward you are genuine and serious. Where I first saw you, how I found you, and why it&apos;s you... is still a little secret for now. 🤫
                 </p>
                 <p>
-                  If you&apos;re open to a cozy chat over a warm cup of coffee, I&apos;ll happily share the whole story. Until then, I just have a couple of quick questions for you 😊
+                  If you would be open to a short, cozy chat over a cup of coffee — with your parents&apos; permission, of course — I&apos;ll gladly share the whole story then. Until then, I just have a couple of quick questions for you 😊
                 </p>
               </div>
             </div>
