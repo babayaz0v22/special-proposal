@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Sparkles, Send, Coffee, ArrowRight, ShieldCheck, Lock } from "lucide-react";
+import { Heart, Sparkles, Send, Coffee, ArrowRight, ShieldCheck, Lock, MapPin, Check } from "lucide-react";
+import Image from "next/image";
 import { CatVisual } from "./CatVisual";
 import { AudioControl } from "./AudioControl";
 import { ConfettiBlast } from "./ConfettiBlast";
@@ -26,6 +27,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
   // Form states for 5A
   const [addressOrCafe, setAddressOrCafe] = useState("");
+  const [mapConfirm, setMapConfirm] = useState<"yes" | "no" | null>(null);
   const [contact, setContact] = useState("");
 
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -182,6 +184,13 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
       localStorage.setItem(`consumed_${token}`, "true");
     }
 
+    const finalAddress =
+      mapConfirm === "yes"
+        ? "S. Nichepurenko Street, 11 (Confirmed from map ✅)"
+        : addressOrCafe.trim()
+        ? `${addressOrCafe.trim()} (Custom entered ✍️)`
+        : "Not provided (Skipped)";
+
     try {
       await fetch("/api/submit", {
         method: "POST",
@@ -189,7 +198,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
         body: JSON.stringify({
           token,
           type: "success_5A",
-          addressOrCafe,
+          addressOrCafe: finalAddress,
           contact,
           dodgeCount,
         }),
@@ -431,30 +440,109 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
           >
             <CatVisual type="success" />
 
-            <div className="mt-2 mb-6">
+            <div className="mt-2 mb-5">
               <h2 className="text-2xl font-bold text-white mb-2">
                 Wonderful news! 🥰
               </h2>
-              <p className="text-xs sm:text-sm text-pink-300/80 font-light">
-                I&apos;d love to prepare a delightful little surprise for you ✨
+              <p className="text-xs sm:text-sm text-pink-200/90 leading-relaxed font-light bg-white/[0.03] p-3.5 rounded-2xl border border-white/5">
+                I would like to send my mother to your home. If you don&apos;t mind, please share your home address (optional) 🌸
               </p>
             </div>
 
             <form onSubmit={handleSubmit5A} className="space-y-4 text-left">
-              <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5 leading-snug">
-                  A convenient location (or your favorite coffee spot) where we can deliver flowers or a pleasant surprise 🌸
-                </label>
-                <textarea
-                  required
-                  rows={3}
-                  value={addressOrCafe}
-                  onChange={(e) => setAddressOrCafe(e.target.value)}
-                  placeholder="e.g., Near Central Cafe or Downtown..."
-                  className="w-full px-4 py-3 rounded-2xl luxury-input text-sm resize-none"
-                />
+              {/* Map Preview & Address Confirmation Card */}
+              <div className="rounded-2xl bg-black/40 border border-white/10 p-3 overflow-hidden">
+                <div className="flex items-center gap-2 mb-2 text-xs font-medium text-pink-300">
+                  <MapPin className="w-4 h-4 text-pink-400 shrink-0" />
+                  <span>Could you confirm if this is your address?</span>
+                </div>
+
+                {/* Map image preview */}
+                <div className="relative w-full h-44 rounded-xl overflow-hidden border border-white/10 mb-2.5 bg-black/50">
+                  <Image
+                    src="/images/map-guess.png"
+                    alt="Map guess location"
+                    fill
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute bottom-2 left-2 right-2 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15 flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping shrink-0" />
+                    <span className="text-xs font-semibold text-white tracking-wide truncate">
+                      улица С. Ничепуренка, 11
+                    </span>
+                  </div>
+                </div>
+
+                {/* Yes / No Choice Buttons */}
+                <div className="grid grid-cols-2 gap-2 mt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMapConfirm("yes");
+                      setAddressOrCafe("улица С. Ничепуренка, 11");
+                    }}
+                    className={`py-2 px-3 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      mapConfirm === "yes"
+                        ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md shadow-pink-500/30 border border-pink-400"
+                        : "bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10"
+                    }`}
+                  >
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Yes, that&apos;s it ✨</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMapConfirm("no");
+                      setAddressOrCafe("");
+                    }}
+                    className={`py-2 px-3 rounded-xl text-xs font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      mapConfirm === "no"
+                        ? "bg-pink-500/20 text-pink-300 border border-pink-500/40"
+                        : "bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10"
+                    }`}
+                  >
+                    <span>No, other address</span>
+                  </button>
+                </div>
+
+                {/* If "Yes", show confirmed status */}
+                {mapConfirm === "yes" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-2.5 p-2 rounded-xl bg-pink-500/10 border border-pink-500/20 text-center text-xs text-pink-300 font-medium"
+                  >
+                    ✅ Address confirmed: улица С. Ничепуренка, 11
+                  </motion.div>
+                )}
+
+                {/* If "No", open input field for custom address */}
+                <AnimatePresence>
+                  {mapConfirm === "no" && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="mt-3 pt-3 border-t border-white/10 overflow-hidden"
+                    >
+                      <label className="block text-xs font-medium text-pink-300 mb-1.5">
+                        Please enter your correct address 🏡
+                      </label>
+                      <textarea
+                        rows={2}
+                        value={addressOrCafe}
+                        onChange={(e) => setAddressOrCafe(e.target.value)}
+                        placeholder="Street name, landmark, house number..."
+                        className="w-full px-3.5 py-2.5 rounded-xl luxury-input text-xs resize-none"
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
+              {/* Contact info (unchanged) */}
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1.5">
                   Your Telegram username or phone number to reach you (optional) 💬
@@ -463,14 +551,14 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                   type="text"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
-                  placeholder="@username or +1 234 567..."
+                  placeholder="@username or +998 90 ..."
                   className="w-full px-4 py-3 rounded-2xl luxury-input text-sm"
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={isSubmitting || !addressOrCafe.trim()}
+                disabled={isSubmitting}
                 className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-sm sm:text-base font-semibold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
               >
                 {isSubmitting ? (
