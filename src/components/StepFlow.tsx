@@ -566,7 +566,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    <span>Send with Love 💌</span>
+                    <span>Send</span>
                   </>
                 )}
               </button>
