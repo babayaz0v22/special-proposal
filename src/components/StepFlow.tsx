@@ -453,12 +453,8 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               </h2>
               <div className="bg-gradient-to-b from-white/[0.05] via-pink-500/[0.03] to-transparent p-4 sm:p-5 rounded-2xl border border-pink-500/20 text-left shadow-inner">
                 <p className="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
-                  I want to be completely honest with you — my feelings are very real. If you don&apos;t mind, my mother would love to visit your home to meet your family and ask for your parents&apos; blessing first.
+                  I want to let you know that my intentions toward you are sincere and serious. If you don&apos;t mind, my mother would love to visit your home with good intentions. 🌸
                 </p>
-                <div className="mt-3 pt-3 border-t border-white/10 text-xs sm:text-[13px] text-pink-300/90 flex items-center gap-1.5 font-light">
-                  <span>🌸</span>
-                  <span>Doing things respectfully and with proper tradition is always the best way.</span>
-                </div>
               </div>
             </div>
 
