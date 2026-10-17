@@ -47,7 +47,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
     if (currentToken && typeof window !== "undefined") {
       const isLocallyConsumed = localStorage.getItem(`consumed_${currentToken}`) === "true";
       if (isLocallyConsumed) {
-        setClosedMessage("This page has fulfilled its purpose 💌");
+        setClosedMessage("Bu sahifa o'z vazifasini bajarib bo'ldi 💌");
         setStep("closed");
         setIsVerifying(false);
         return;
@@ -66,7 +66,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
         const data = await res.json();
 
         if (data.consumed) {
-          setClosedMessage(data.message || "This page has fulfilled its purpose 💌");
+          setClosedMessage(data.message || "Bu sahifa o'z vazifasini bajarib bo'ldi 💌");
           setStep("closed");
         }
       } catch (err) {
@@ -659,10 +659,10 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 <Lock className="w-5 h-5" />
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                {closedMessage || "This page has fulfilled its purpose 💌"}
+                {closedMessage || "Bu sahifa o'z vazifasini bajarib bo'ldi 💌"}
               </h2>
               <p className="text-xs sm:text-sm text-slate-400 font-light">
-                This special invitation was meant for one-time access.
+                Ushbu maxsus havola faqat bir martalik foydalanish uchun mo&apos;ljallangan edi.
               </p>
             </div>
           </motion.div>
