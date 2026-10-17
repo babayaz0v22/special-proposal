@@ -30,7 +30,6 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
   // Initialize and check token
   useEffect(() => {
-    // 1. Extract token from URL if not already present
     let currentToken = token;
     if (!currentToken && typeof window !== "undefined") {
       const urlParams = new URLSearchParams(window.location.search);
@@ -40,21 +39,20 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
       }
     }
 
-    // 2. Check local browser lock
+    // Check local browser lock
     if (currentToken && typeof window !== "undefined") {
       const isLocallyConsumed = localStorage.getItem(`consumed_${currentToken}`) === "true";
       if (isLocallyConsumed) {
-        setClosedMessage("Bu sahifa o'z vazifasini bajarib bo'ldi 💌");
+        setClosedMessage("This page has fulfilled its purpose 💌");
         setStep("closed");
         setIsVerifying(false);
         return;
       }
     }
 
-    // 3. Verify on server
+    // Verify on server
     const checkTokenOnServer = async () => {
       if (!currentToken) {
-        // If no token provided, we still allow friendly preview/flow or fallback
         setIsVerifying(false);
         return;
       }
@@ -64,7 +62,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
         const data = await res.json();
 
         if (data.consumed) {
-          setClosedMessage(data.message || "Bu sahifa o'z vazifasini bajarib bo'ldi 💌");
+          setClosedMessage(data.message || "This page has fulfilled its purpose 💌");
           setStep("closed");
         }
       } catch (err) {
@@ -109,7 +107,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
   const handleDodgeNo = () => {
     setDodgeCount((prev) => prev + 1);
 
-    // Random safe offsets within card container (-120px to +120px horizontal, -60px to +60px vertical)
+    // Random safe offsets within card container
     const randomX = (Math.random() - 0.5) * 220;
     const randomY = (Math.random() - 0.5) * 110;
 
@@ -133,10 +131,8 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
       setStep("5A");
       sendTelemetry("status_free");
     } else {
-      // Ha, band -> Step 5B
       setStep("5B");
       sendTelemetry("status_busy");
-      // Invalidate token for 5B polite exit
       if (typeof window !== "undefined" && token) {
         localStorage.setItem(`consumed_${token}`, "true");
       }
@@ -184,7 +180,6 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
     }
   };
 
-  // Animation variants for smooth card changes
   const cardVariants = {
     initial: { opacity: 0, y: 18, scale: 0.96 },
     animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
@@ -195,7 +190,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <div className="w-10 h-10 border-2 border-pink-500/30 border-t-pink-500 rounded-full animate-spin mb-4" />
-        <p className="text-sm text-pink-300/80 tracking-wide font-light">Yuklanmoqda...</p>
+        <p className="text-sm text-pink-300/80 tracking-wide font-light">Loading...</p>
       </div>
     );
   }
@@ -220,13 +215,13 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-4 mb-8">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-pink-500/10 text-pink-400 border border-pink-500/20 mb-3">
-                <Sparkles className="w-3.5 h-3.5" /> Faqat siz uchun
+                <Sparkles className="w-3.5 h-3.5" /> Just for you
               </span>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2 leading-snug">
                 I have something special to tell you...
               </h1>
               <p className="text-sm text-slate-300/80 font-light">
-                Kichik bir sarguzashtga tayyormisiz? ✨
+                Are you ready for a little mystery? ✨
               </p>
             </div>
 
@@ -267,10 +262,10 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                   className="text-xs text-pink-300/70 italic mt-2"
                 >
                   {dodgeCount < 3
-                    ? "Rostdan ham 'No' demoqchimisiz? 🙈"
+                    ? "Wait, did you really try to click 'No'? 🙈"
                     : dodgeCount < 6
-                    ? "Baribir qochib keta olmaysiz! 😂"
-                    : "Qarang, tugma ham sizga 'Ha' deyishingizni aytyapti 😉"}
+                    ? "You can't escape that easily! 😂"
+                    : "Even the button knows you should say yes 😉"}
                 </motion.p>
               )}
             </div>
@@ -314,17 +309,17 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-3 mb-6 text-left">
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 text-center">
-                Xo&apos;sh, bu yerda nimalar bo&apos;lyapti? 👀
+                So, what&apos;s going on here? 👀
               </h2>
               <div className="space-y-3 text-slate-200/90 text-sm sm:text-base leading-relaxed bg-white/[0.03] p-4 rounded-2xl border border-white/5 font-light">
                 <p>
-                  Balki bu kutilmagan bo‘lishi mumkin, lekin men oddiy salom-alikdan ko‘ra o‘zgacharoq yo‘lni tanladim.
+                  This might be unexpected, but I wanted to choose a way a little more memorable than an ordinary hello.
                 </p>
                 <p>
-                  Ismim <strong className="text-pink-400 font-semibold">Nodirbek</strong>. Sizni qayerda ko‘rganim, qanday topganim va nima uchun aynan siz ekanligingiz esa... hozircha kichik bir sir. 🤫
+                  My name is <strong className="text-pink-400 font-semibold">Nodirbek</strong>. Where I first saw you, how I found you, and why it&apos;s you... is still a little secret for now. 🤫
                 </p>
                 <p>
-                  Agar bir piyola kofe ustida qisqa suhbatga rozi bo‘lsangiz, barchasini o‘shanda aytib beraman. Ungacha esa bir nechta savolim bor edi 😊
+                  If you&apos;re open to a cozy chat over a warm cup of coffee, I&apos;ll happily share the whole story. Until then, I just have a couple of quick questions for you 😊
                 </p>
               </div>
             </div>
@@ -333,7 +328,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               onClick={handleIntrigueContinue}
               className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-sm sm:text-base font-semibold group cursor-pointer"
             >
-              <span>Sirni bilish qiziq... Davom etaylik! ✨</span>
+              <span>I&apos;m curious to know... Let&apos;s continue! ✨</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
           </motion.div>
@@ -353,13 +348,13 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-3 mb-8">
               <span className="inline-block text-xs uppercase tracking-widest text-pink-400 font-medium mb-1">
-                Kichik bir savol
+                A quick question
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Yuragingiz band emasmi?
+                Is your heart taken?
               </h2>
               <p className="text-xs text-slate-400 mt-2">
-                Iltimos, samimiy javob bering — har qanday javobingizni hurmat qilaman 🌸
+                Please be completely honest — I will respect whatever your answer is 🌸
               </p>
             </div>
 
@@ -369,14 +364,14 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-base font-semibold cursor-pointer group"
               >
                 <Heart className="w-5 h-5 fill-white transition-transform group-hover:scale-110" />
-                <span>Yo&apos;q, bo&apos;sh ✨</span>
+                <span>No, it&apos;s free ✨</span>
               </button>
 
               <button
                 onClick={() => handleStatusChoice("busy")}
                 className="w-full py-3.5 px-6 btn-glass text-sm sm:text-base text-slate-300 hover:text-white rounded-full cursor-pointer transition-colors"
               >
-                Ha, band
+                Yes, I&apos;m taken
               </button>
             </div>
           </motion.div>
@@ -396,37 +391,37 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-2 mb-6">
               <h2 className="text-2xl font-bold text-white mb-2">
-                Ajoyib yangilik! 🥰
+                Wonderful news! 🥰
               </h2>
               <p className="text-xs sm:text-sm text-pink-300/80 font-light">
-                Sizga yoqimli bir syurpriz tayyorlamoqchiman ✨
+                I&apos;d love to prepare a delightful little surprise for you ✨
               </p>
             </div>
 
             <form onSubmit={handleSubmit5A} className="space-y-4 text-left">
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1.5 leading-snug">
-                  Sizga kutilmagan yoqimli sovg&apos;a yoki gullar yetkazib berishimiz uchun qulay manzil (yoki sevimli kofe maskaningiz) 🌸
+                  A convenient location (or your favorite coffee spot) where we can deliver flowers or a pleasant surprise 🌸
                 </label>
                 <textarea
                   required
                   rows={3}
                   value={addressOrCafe}
                   onChange={(e) => setAddressOrCafe(e.target.value)}
-                  placeholder="Masalan: Rayhon kafesi yonida yoki Chilonzor 9-mavze..."
+                  placeholder="e.g., Near Central Cafe or Downtown..."
                   className="w-full px-4 py-3 rounded-2xl luxury-input text-sm resize-none"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1.5">
-                  Bog&apos;lanish uchun Telegram username yoki telefon raqamingiz (ixtiyoriy) 💬
+                  Your Telegram username or phone number to reach you (optional) 💬
                 </label>
                 <input
                   type="text"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
-                  placeholder="@username yoki +998 90 ..."
+                  placeholder="@username or +1 234 567..."
                   className="w-full px-4 py-3 rounded-2xl luxury-input text-sm"
                 />
               </div>
@@ -441,7 +436,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    <span>Yuborish 💌</span>
+                    <span>Send with Love 💌</span>
                   </>
                 )}
               </button>
@@ -463,16 +458,16 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-4 mb-4">
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">
-                Tushundim... 🤍
+                I understand... 🤍
               </h2>
               <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed font-light bg-white/[0.03] p-4 rounded-2xl border border-white/5">
-                Samimiylik uchun katta rahmat! Sizga chin dildan baxt tilayman ✨
+                Thank you so much for your honesty! Wishing you genuine happiness from the bottom of my heart ✨
               </p>
             </div>
 
             <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-400">
               <ShieldCheck className="w-4 h-4 text-pink-400/80" />
-              <span>Javobingiz hurmat bilan qabul qilindi</span>
+              <span>Your response has been received with sincere respect</span>
             </div>
           </motion.div>
         )}
@@ -506,13 +501,13 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 You made my day! 🎉
               </h2>
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-light bg-pink-500/10 border border-pink-500/20 p-4 rounded-2xl">
-                Tez orada bog&apos;lanaman va o&apos;sha sirni aytib beraman ✨
+                I&apos;ll be in touch soon and reveal that secret ✨
               </p>
             </div>
 
             <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2 text-xs text-pink-400/80 font-light">
               <Coffee className="w-4 h-4" />
-              <span>Kofe suhbati kutmoqda... ☕</span>
+              <span>A cozy coffee chat awaits... ☕</span>
             </div>
           </motion.div>
         )}
@@ -534,10 +529,10 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 <Lock className="w-5 h-5" />
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                {closedMessage || "Bu sahifa o'z vazifasini bajarib bo'ldi 💌"}
+                {closedMessage || "This page has fulfilled its purpose 💌"}
               </h2>
               <p className="text-xs sm:text-sm text-slate-400 font-light">
-                Ushbu maxsus havola faqat bir martalik foydalanish uchun mo&apos;ljallangan edi.
+                This special invitation was meant for one-time access.
               </p>
             </div>
           </motion.div>
