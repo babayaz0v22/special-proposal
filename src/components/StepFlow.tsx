@@ -348,13 +348,13 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               </h2>
               <div className="space-y-3.5 text-slate-200/90 text-xs sm:text-sm leading-relaxed bg-white/[0.03] p-4 sm:p-5 rounded-2xl border border-white/5 font-light">
                 <p>
-                  This might feel a bit unexpected, but I wanted to do something more memorable than just an everyday text. I noticed you unfollowed me on Instagram, and my follow request was left waiting rather patiently... 😂 So being a developer, I thought I&apos;d use my skills to say hello in my own way.
+                  This might come as a bit of a surprise, but I wanted to do something a little more memorable than just an everyday message. I noticed you unfollowed me on Instagram, while my follow request is still patiently waiting for its turn... 😂 So, as a developer, I decided to put my skills to work and say hello in my own way.
                 </p>
                 <p>
-                  And knowing that you&apos;re studying <strong className="text-pink-300 font-medium">English Philology</strong>, I thought writing this in English was only right! 🎓✨
+                  And since you&apos;re studying <strong className="text-pink-300 font-medium">English Philology</strong>, it only made sense to write this in English! 🎓✨
                 </p>
                 <p>
-                  I really wanted a chance to introduce myself and say hello properly. Where I first saw you, how I found you, and why you... well, that&apos;s still my little secret for now 🤫
+                  I really wanted a chance to properly introduce myself and say hello. As for where I first saw you, how I found you, and why it&apos;s you... well, let&apos;s keep that as a sweet little secret for now 🤫
                 </p>
                 <div className="p-2.5 sm:p-3 rounded-xl bg-pink-500/10 border border-pink-500/20 text-xs text-pink-200 mt-2">
                   🛡️ <strong>Peace of mind:</strong> If your answer is no, I completely understand and respect it, and I promise I will never bother you again. Zero obligations!
