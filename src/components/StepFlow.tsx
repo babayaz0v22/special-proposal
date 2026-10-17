@@ -587,14 +587,14 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               <h2 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-rose-300 to-pink-400">
                 You made my day! 🎉
               </h2>
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-light bg-pink-500/10 border border-pink-500/20 p-4 rounded-2xl">
-                I&apos;ll be in touch soon and reveal that secret ✨
+              <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal bg-pink-500/10 border border-pink-500/20 p-4 rounded-2xl">
+                Thank you so much! I&apos;ll be in touch soon ✨
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2 text-xs text-pink-400/80 font-light">
-              <Coffee className="w-4 h-4" />
-              <span>A cozy coffee chat awaits... ☕</span>
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2 text-xs sm:text-sm text-pink-300/90 font-light">
+              <Sparkles className="w-4 h-4 text-pink-400" />
+              <span>With sincere respect, Nodirbek 🌸</span>
             </div>
           </motion.div>
         )}
