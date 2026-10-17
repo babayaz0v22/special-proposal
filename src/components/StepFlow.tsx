@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Sparkles, Send, Coffee, ArrowRight, ShieldCheck, Lock, MapPin, Check } from "lucide-react";
 import Image from "next/image";
 import { CatVisual } from "./CatVisual";
-import { AudioControl } from "./AudioControl";
+import { AudioControl, AudioControlHandle } from "./AudioControl";
 import { ConfettiBlast } from "./ConfettiBlast";
 import { StepId } from "@/types";
 
@@ -24,6 +24,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isVerifying, setIsVerifying] = useState(true);
   const [closedMessage, setClosedMessage] = useState<string | null>(null);
+  const audioControlRef = useRef<AudioControlHandle | null>(null);
 
   // Form states for 5A
   const [addressOrCafe, setAddressOrCafe] = useState("");
@@ -102,6 +103,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
   // Step 1: Start proposal flow
   const handleStart = () => {
+    audioControlRef.current?.play();
     setIsAudioTriggered(true);
     setStep(2);
     sendTelemetry("opened");
@@ -231,7 +233,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
   return (
     <div ref={containerRef} className="relative z-10 w-full max-w-md mx-auto px-4 py-8 sm:py-12 flex flex-col items-center justify-center min-h-screen">
       {/* Floating Audio Controller */}
-      <AudioControl shouldStart={isAudioTriggered} />
+      <AudioControl ref={audioControlRef} shouldStart={isAudioTriggered} />
 
       <AnimatePresence mode="wait">
         {/* ==================== STEP 1: INTRO ==================== */}
