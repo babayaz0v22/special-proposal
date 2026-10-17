@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
-// Safe, high quality royalty-free romantic background melody
-const ROMANTIC_AUDIO_URL = "https://cdn.pixabay.com/download/audio/2022/05/16/audio_c8479e0a6b.mp3?filename=romantic-piano-111162.mp3";
+// Safe, high quality royalty-free romantic background melody (local asset)
+const ROMANTIC_AUDIO_URL = "/audio/romantic.mp3";
 
 interface AudioControlProps {
   shouldStart?: boolean;
