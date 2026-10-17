@@ -445,39 +445,39 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
           >
             <CatVisual type="success" />
 
-            <div className="mt-2 mb-5">
-              <h2 className="text-2xl font-bold text-white mb-2.5">
+            <div className="mt-3 mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
                 Wonderful news! 🥰
               </h2>
-              <div className="text-xs sm:text-sm text-slate-200/95 leading-relaxed font-light bg-white/[0.03] p-4 rounded-2xl border border-white/5 space-y-2 text-center sm:text-left">
-                <p>
+              <div className="bg-gradient-to-b from-white/[0.05] via-pink-500/[0.03] to-transparent p-4 sm:p-5 rounded-2xl border border-pink-500/20 text-left shadow-inner">
+                <p className="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
                   My intentions toward you are truly sincere and serious. If you wouldn&apos;t mind, my mother would love to visit your home to meet your family and ask for your parents&apos; blessing first.
                 </p>
-                <p className="text-pink-300/80 text-[11px] sm:text-xs">
-                  It is always best when everything happens respectfully and in accordance with proper traditions 🌸
-                </p>
+                <div className="mt-3 pt-3 border-t border-white/10 text-xs sm:text-[13px] text-pink-300/90 flex items-center gap-1.5 font-light">
+                  <span>🌸</span>
+                  <span>It is always best when everything happens respectfully and in accordance with proper traditions.</span>
+                </div>
               </div>
             </div>
 
             <form onSubmit={handleSubmit5A} className="space-y-4 text-left">
               {/* Instagram Follow Request (Playful Icebreaker) */}
-              <div className="p-3.5 rounded-2xl bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-purple-500/10 border border-pink-500/25">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-semibold text-pink-300 text-xs flex items-center gap-1.5">
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-purple-500/10 border border-pink-500/25">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="font-semibold text-pink-300 text-xs sm:text-sm flex items-center gap-1.5">
                     📸 Instagram Follow Request
                   </span>
-                  <span className="text-[10px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-medium">Optional</span>
                 </div>
-                <p className="text-slate-200 text-xs leading-relaxed mb-3">
+                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed mb-3.5">
                   If you don&apos;t mind, would you consider accepting that poor little follow request on Instagram? 🙈
                 </p>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2.5">
                   <button
                     type="button"
                     onClick={() => setIgAccept("yes")}
-                    className={`py-2 px-3 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                    className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 ${
                       igAccept === "yes"
-                        ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md shadow-pink-500/30 border border-pink-400"
+                        ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg shadow-pink-500/30 border border-pink-400 scale-[1.02]"
                         : "bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10"
                     }`}
                   >
@@ -488,9 +488,9 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                   <button
                     type="button"
                     onClick={() => setIgAccept("later")}
-                    className={`py-2 px-3 rounded-xl text-xs font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                    className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 ${
                       igAccept === "later"
-                        ? "bg-pink-500/20 text-pink-300 border border-pink-500/40"
+                        ? "bg-pink-500/20 text-pink-200 border border-pink-500/40 shadow-sm"
                         : "bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10"
                     }`}
                   >
@@ -499,24 +499,24 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                 </div>
               </div>
 
-              {/* Contact info (unchanged) */}
+              {/* Contact info (without Optional) */}
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5">
-                  Your Telegram username or phone number to reach you (optional) 💬
+                <label className="block text-xs sm:text-sm font-medium text-slate-200 mb-2">
+                  Your Telegram username or phone number 💬
                 </label>
                 <input
                   type="text"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
                   placeholder="@username or +998 90 ..."
-                  className="w-full px-4 py-3 rounded-2xl luxury-input text-sm"
+                  className="w-full px-4 py-3.5 rounded-2xl luxury-input text-sm text-white placeholder-slate-500 transition-all focus:border-pink-500/50"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-sm sm:text-base font-semibold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+                className="w-full py-4 px-6 btn-neon flex items-center justify-center gap-2 text-sm sm:text-base font-semibold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-3 shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all"
               >
                 {isSubmitting ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
