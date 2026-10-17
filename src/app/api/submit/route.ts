@@ -20,9 +20,9 @@ export async function POST(req: NextRequest) {
     if (type === "success_5A") {
       telegramText = `🎉 <b>MAXSUS JAVOB YUBORILDI!</b> 💌\n\n` +
         `📸 <b>Instagram Request:</b> <i>${igAccept || "Tanlanmadi"}</i>\n\n` +
-        `📍 <b>Uy manzili / Javob:</b>\n<i>${addressOrCafe || "Kiritilmadi"}</i>\n\n` +
+        `💍 <b>Niyat:</b> <i>Oila tashrifi va ota-onadan ruxsat so'rash 🌸</i>\n\n` +
         `📞 <b>Aloqa (Telegram/Tel/IG):</b>\n<code>${contact || "Kiritilmadi"}</code>\n\n` +
-        `✨ <i>Bu ajoyib xushxabar! Onangiz bilan birga tashrif buyurishingiz mumkin.</i>`;
+        `✨ <i>Bu ajoyib xushxabar! Onangiz bilan birga uylariga borishingiz mumkin.</i>`;
 
       if (dodgeCount && dodgeCount > 0) {
         telegramText += `\n\n<i>Eslatma: Boshida "No" tugmasini ${dodgeCount} marta qochirgan edi 😉</i>`;

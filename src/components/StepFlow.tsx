@@ -446,16 +446,21 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
             <CatVisual type="success" />
 
             <div className="mt-2 mb-5">
-              <h2 className="text-2xl font-bold text-white mb-2">
+              <h2 className="text-2xl font-bold text-white mb-2.5">
                 Wonderful news! 🥰
               </h2>
-              <p className="text-xs sm:text-sm text-pink-200/90 leading-relaxed font-light bg-white/[0.03] p-3.5 rounded-2xl border border-white/5">
-                I would like to send my mother to your home. If you don&apos;t mind, please share your home address (optional) 🌸
-              </p>
+              <div className="text-xs sm:text-sm text-slate-200/95 leading-relaxed font-light bg-white/[0.03] p-4 rounded-2xl border border-white/5 space-y-2 text-center sm:text-left">
+                <p>
+                  My intentions toward you are truly sincere and serious. If you wouldn&apos;t mind, my mother would love to visit your home to meet your family and ask for your parents&apos; blessing first.
+                </p>
+                <p className="text-pink-300/80 text-[11px] sm:text-xs">
+                  It is always best when everything happens respectfully and in accordance with proper traditions 🌸
+                </p>
+              </div>
             </div>
 
             <form onSubmit={handleSubmit5A} className="space-y-4 text-left">
-              {/* Card 1: Instagram Follow Request (Playful Icebreaker) */}
+              {/* Instagram Follow Request (Playful Icebreaker) */}
               <div className="p-3.5 rounded-2xl bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-purple-500/10 border border-pink-500/25">
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="font-semibold text-pink-300 text-xs flex items-center gap-1.5">
@@ -492,26 +497,6 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                     <span>Maybe later 😊</span>
                   </button>
                 </div>
-              </div>
-
-              {/* Card 2: Serious Intention & Mother's Visit */}
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1.5 text-pink-300 font-semibold text-xs">
-                  <span>🏡 Sincere intentions & Family visit</span>
-                </div>
-                <p className="text-slate-200 text-xs leading-relaxed mb-3">
-                  My intentions toward you are completely sincere and serious. With your and your family&apos;s blessing, I would truly love for my mother to visit your home to meet your family and pay her respects 🌸
-                </p>
-                <label className="block font-medium text-slate-300 mb-1 text-[11px]">
-                  If you are comfortable, you can share your home address (optional):
-                </label>
-                <textarea
-                  rows={2}
-                  value={addressOrCafe}
-                  onChange={(e) => setAddressOrCafe(e.target.value)}
-                  placeholder="Street name, landmark, house number..."
-                  className="w-full px-3 py-2 rounded-xl luxury-input text-xs resize-none"
-                />
               </div>
 
               {/* Contact info (unchanged) */}
