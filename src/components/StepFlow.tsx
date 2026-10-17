@@ -246,16 +246,9 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
             exit="exit"
             className="w-full glass-card rounded-3xl p-6 sm:p-8 text-center"
           >
-            {/* Elegant Bismillah Header */}
-            <div className="mb-2">
-              <span className="text-sm sm:text-base font-serif text-amber-200/90 tracking-wider select-none drop-shadow-[0_2px_8px_rgba(245,158,11,0.2)]">
-                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-              </span>
-            </div>
-
             <CatVisual type="intro" />
 
-            <div className="mt-3 mb-8">
+            <div className="mt-4 mb-8">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/25 mb-3">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Sincere Intentions • Just for you
               </span>
@@ -456,7 +449,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-3 mb-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-                Alhamdulillah! 🤍
+                Wonderful news! 🤍
               </h2>
               <div className="bg-gradient-to-b from-white/[0.05] via-emerald-500/[0.04] to-transparent p-4 sm:p-5 rounded-2xl border border-emerald-500/25 text-left shadow-inner">
                 <p className="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
@@ -594,7 +587,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
 
             <div className="mt-4 space-y-2">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">
-                Alhamdulillah! 🎉
+                You made my day! 🎉
               </h2>
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-2xl">
                 Thank you so much! Insha&apos;Allah, I&apos;ll be in touch soon ✨
