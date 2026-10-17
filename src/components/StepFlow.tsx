@@ -352,7 +352,7 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
                   And knowing that you&apos;re studying <strong className="text-pink-300 font-medium">English Philology</strong>, I thought writing this in English was only right! 🎓✨
                 </p>
                 <p>
-                  I wanted to reach out because my intentions toward you are genuinely sincere and serious. How I found you, where I first noticed you, and why you... well, that&apos;s still a little secret for now 🤫
+                  I really wanted a chance to introduce myself and say hello properly. Where I first saw you, how I found you, and why you... well, that&apos;s still my little secret for now 🤫
                 </p>
                 <div className="p-2.5 sm:p-3 rounded-xl bg-pink-500/10 border border-pink-500/20 text-xs text-pink-200 mt-2">
                   🛡️ <strong>Peace of mind:</strong> If your answer is no, I completely understand and respect it, and I promise I will never bother you again. Zero obligations!
@@ -451,11 +451,11 @@ export const StepFlow: React.FC<StepFlowProps> = ({ initialToken = "" }) => {
               </h2>
               <div className="bg-gradient-to-b from-white/[0.05] via-pink-500/[0.03] to-transparent p-4 sm:p-5 rounded-2xl border border-pink-500/20 text-left shadow-inner">
                 <p className="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
-                  My intentions toward you are truly sincere and serious. If you wouldn&apos;t mind, my mother would love to visit your home to meet your family and ask for your parents&apos; blessing first.
+                  I want to be completely honest with you — my feelings are very real. If you don&apos;t mind, my mother would love to visit your home to meet your family and ask for your parents&apos; blessing first.
                 </p>
                 <div className="mt-3 pt-3 border-t border-white/10 text-xs sm:text-[13px] text-pink-300/90 flex items-center gap-1.5 font-light">
                   <span>🌸</span>
-                  <span>It is always best when everything happens respectfully and in accordance with proper traditions.</span>
+                  <span>Doing things respectfully and with proper tradition is always the best way.</span>
                 </div>
               </div>
             </div>
